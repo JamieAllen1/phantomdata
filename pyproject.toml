@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "phantomdata"
+version = "0.1.0"
+description = "A synthetic data generator for schema-driven integration testing"
+authors = ["Jamie Allen <jamie_allen1@hotmail.com>"]
+license = "GPL3"
+readme = "README.md"
+packages = [{ include = "phantomdata" }]
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+typer = "^0.16.0"
+faker = "^37.3.0"
+pandas = "^2.2.3"
+pyarrow = "^20.0.0"
+fastparquet = "^2024.11.0"
+dbt-core = "^1.9.6"
+sqlglot = "^26.24.0"
+pyiceberg = {extras = ["sql-sqlite"], version = "^0.9.1"}
+
+[tool.poetry.scripts]
+phantomdata = "phantomdata.cli:app"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.2.0"
+pytest = "^8.4.0"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
