@@ -17,6 +17,8 @@ table:
       type: decimal
       scale: 10
       precision: 2
+    - name: is_active
+      type: boolean
     - name: stuff
       type: string
       length: 100

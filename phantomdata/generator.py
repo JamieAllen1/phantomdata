@@ -37,11 +37,8 @@ def generate_data(
             ]  # noqa: E501
         elif col_type == "string":
             data = [fake.text(max_nb_chars=col_length) for _ in range(rows)]
-        # elif col_type == "float":
-        #     data.append(
-        #       [fake.random_number(digits=5, fix_len=True)
-        #       for _ in range(rows)]
-        #       )
+        elif col_type == "boolean":
+            data = [fake.boolean() for _ in range(rows)]
 
         df = df.assign(z=data)  # Assign the generated data to the DataFrame
         df.rename(columns={"z": col_name}, inplace=True)  # Rename the column
