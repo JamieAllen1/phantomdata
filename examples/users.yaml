@@ -3,11 +3,20 @@ table:
   columns:
     - name: id
       type: integer
+      domain: id
     - name: name
       type: string
+      domain: name
     - name: age
       type: integer
+      domain: age
     - name: email
       type: string
+      domain: email
+    - name: balance
+      type: decimal
+      scale: 10
+      precision: 2
     - name: stuff
       type: string
+      length: 100

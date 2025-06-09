@@ -12,22 +12,31 @@ def generate_data(
     df = pd.DataFrame()
 
     for col in schema:
-        col_name = col["name"]
-        col_type = col["type"]
+        col_name = col.get("name")
+        col_type = col.get("type")
+        col_domain = col.get("domain", None)
+        col_length = col.get("length", None)
+        col_scale = col.get("scale", 5)
+        col_precision = col.get("precision", 2)
 
         # Generate data based on type
-        if col_name == "id":
+        if col_domain == "id":
             data = [i + 1 for i in range(rows)]
-        elif col_name == "name":
+        elif col_domain == "name":
             data = [fake.name() for i in range(rows)]
-        elif col_name == "email":
+        elif col_domain == "email":
             data = [fake.email() for i in range(rows)]
-        elif col_name == "age":
+        elif col_domain == "age":
             data = [fake.random_int(min=18, max=80) for i in range(rows)]
         elif col_type == "integer":
             data = [fake.random_int() for _ in range(rows)]
+        elif col_type == "decimal":
+            data = [
+                fake.random_number(digits=col_scale) / (10**col_precision)
+                for _ in range(rows)
+            ]  # noqa: E501
         elif col_type == "string":
-            data = [fake.text(max_nb_chars=100) for _ in range(rows)]
+            data = [fake.text(max_nb_chars=col_length) for _ in range(rows)]
         # elif col_type == "float":
         #     data.append(
         #       [fake.random_number(digits=5, fix_len=True)
