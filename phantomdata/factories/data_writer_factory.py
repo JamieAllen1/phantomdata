@@ -1,7 +1,7 @@
-from phantomdata.csv_writer import CSVWriter
-from phantomdata.data_writer import DataWriter
-from phantomdata.json_writer import JSONWriter
-from phantomdata.parquet_writer import ParquetWriter
+from phantomdata.writers.csv_writer import CSVWriter
+from phantomdata.writers.data_writer import DataWriter
+from phantomdata.writers.json_writer import JSONWriter
+from phantomdata.writers.parquet_writer import ParquetWriter
 
 
 class DataWriterFactory:

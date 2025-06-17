@@ -1,6 +1,6 @@
 import pandas as pd
 
-from phantomdata.data_writer import DataWriter
+from phantomdata.writers.data_writer import DataWriter
 
 
 class ParquetWriter(DataWriter):

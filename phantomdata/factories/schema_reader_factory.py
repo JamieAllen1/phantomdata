@@ -1,5 +1,5 @@
-from phantomdata.schema_reader import SchemaReader
-from phantomdata.yaml_reader import YAMLReader
+from phantomdata.readers.schema_reader import SchemaReader
+from phantomdata.readers.yaml_reader import YAMLReader
 
 
 class SchemaReaderFactory:

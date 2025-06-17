@@ -1,6 +1,6 @@
-from phantomdata.data_writer_factory import DataWriterFactory
+from phantomdata.factories.data_writer_factory import DataWriterFactory
+from phantomdata.factories.schema_reader_factory import SchemaReaderFactory
 from phantomdata.generator import generate_data
-from phantomdata.schema_reader_factory import SchemaReaderFactory
 
 
 def processor(

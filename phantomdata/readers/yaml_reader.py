@@ -1,6 +1,6 @@
 import yaml
 
-from phantomdata.schema_reader import SchemaReader
+from phantomdata.readers.schema_reader import SchemaReader
 
 
 class YAMLReader(SchemaReader):
