@@ -29,5 +29,5 @@ def processor(
             row_count = rows
 
         df = generate_data(columns, row_count, nulls)
-        # writer.write(df, "../../" + outputpath + "/" + tablename + "." + fileformat) # noqa: E501
-        writer.write(df, tablename + "." + fileformat)
+        writer.write(df, outputpath + "/" + tablename + "." + fileformat)  # noqa: E501
+        # writer.write(df, tablename + "." + fileformat)
