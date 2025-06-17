@@ -1,6 +1,10 @@
 import pandas as pd
 from faker import Faker
 
+from phantomdata.logger import get_logger
+
+logger = get_logger(__name__)
+
 fake = Faker()
 
 
@@ -39,6 +43,10 @@ def generate_data(
             data = [fake.text(max_nb_chars=col_length) for _ in range(rows)]
         elif col_type == "boolean":
             data = [fake.boolean() for _ in range(rows)]
+
+        logger.debug(
+            f"Generating {col_name} with type {col_type} and domain {col_domain}"  # noqa: E501
+        )
 
         df = df.assign(z=data)  # Assign the generated data to the DataFrame
         df.rename(columns={"z": col_name}, inplace=True)  # Rename the column

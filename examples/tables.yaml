@@ -1,6 +1,7 @@
 tables:
   - table:
       name: users
+      count: 1000
       columns:
         - name: id
           type: integer
@@ -23,3 +24,17 @@ tables:
         - name: stuff
           type: string
           length: 100
+  - table:
+      name: customers
+      columns:
+        - name: id
+          type: integer
+          domain: id
+        - name: name
+          type: string
+          domain: name
+        - name: email
+          type: string
+          domain: email
+        - name: is_active
+          type: boolean
