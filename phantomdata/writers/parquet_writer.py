@@ -1,6 +1,9 @@
 import pandas as pd
 
 from phantomdata.writers.data_writer import DataWriter
+from phantomdata.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class ParquetWriter(DataWriter):
@@ -13,4 +16,4 @@ class ParquetWriter(DataWriter):
         :param file_path: The path to the output Parquet file.
         """
         df.to_parquet(file_path, index=False)
-        print(f"Data written to {file_path} successfully.")
+        logger.info(f"Data written to {file_path} successfully.")

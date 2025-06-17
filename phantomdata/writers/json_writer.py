@@ -1,6 +1,9 @@
 import pandas as pd
 
 from phantomdata.writers.data_writer import DataWriter
+from phantomdata.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class JSONWriter(DataWriter):
@@ -13,4 +16,4 @@ class JSONWriter(DataWriter):
         :param file_path: The path to the output JSON file.
         """
         df.to_json(file_path, orient="records", lines=True)
-        print(f"Data written to {file_path} successfully.")
+        logger.info(f"Data written to {file_path} successfully.")

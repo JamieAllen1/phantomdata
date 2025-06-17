@@ -1,6 +1,9 @@
 import pandas as pd
 
 from phantomdata.writers.data_writer import DataWriter
+from phantomdata.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class CSVWriter(DataWriter):
@@ -13,4 +16,4 @@ class CSVWriter(DataWriter):
         :param file_path: The path to the output CSV file.
         """
         df.to_csv(file_path, index=False)
-        print(f"Data written to {file_path} successfully.")
+        logger.info(f"Data written to {file_path} successfully.")
