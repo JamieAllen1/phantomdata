@@ -9,7 +9,7 @@ app = typer.Typer()
 def generate(
     schema: str = typer.Option(..., help="Path to schema (YAML, JSON, etc.)"),  # noqa
     rows: int = typer.Option(1000, help="Number of rows to generate"),  # noqa
-    output: str = typer.Option("output.csv", help="Output file name"),  # noqa
+    outputpath: str = typer.Option("", help="Output folder name"),  # noqa
     fileformat: str = typer.Option(  # noqa
         "csv", help="Output file format (csv, parquet, json)"
     ),  # noqa
@@ -18,7 +18,7 @@ def generate(
     processor(
         schema=schema,
         rows=rows,
-        output=output,
+        outputpath=outputpath,
         fileformat=fileformat,
         nulls=nulls,
     )
