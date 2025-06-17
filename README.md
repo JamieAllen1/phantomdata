@@ -67,8 +67,8 @@ Make sure your code adheres to the project’s coding standards and passes all t
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0.  
-You may copy, distribute, and modify the software as long as you track changes/dates in source files.  
+This project is licensed under the GNU General Public License v3.0.
+You may copy, distribute, and modify the software as long as you track changes/dates in source files.
 Any derivative work must also be open-sourced under the same GPL license.
 
 See the [COPYING](COPYING) file for the full text.

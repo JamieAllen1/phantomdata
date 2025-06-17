@@ -1,8 +1,6 @@
 import typer
 
-from phantomdata.generator import generate_data
-from phantomdata.schema_loader import load_schema
-from phantomdata.writer import writer
+from phantomdata.processor import processor
 
 app = typer.Typer()
 
@@ -17,13 +15,13 @@ def generate(
     ),  # noqa
     nulls: float = typer.Option(0.0, help="Fraction of nulls to inject"),  # noqa
 ):
-    """Generate synthetic data from a schema."""
-    columns = load_schema(schema)
-
-    df = generate_data(columns, rows, nulls)
-    # df.to_csv(output, index=False)
-    writer(df, output, fileformat)
-    typer.echo(f"✅ Wrote {rows} rows to {output}")
+    processor(
+        schema=schema,
+        rows=rows,
+        output=output,
+        fileformat=fileformat,
+        nulls=nulls,
+    )
 
 
 app()
