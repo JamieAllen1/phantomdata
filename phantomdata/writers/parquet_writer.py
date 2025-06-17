@@ -1,7 +1,7 @@
 import pandas as pd
 
-from phantomdata.writers.data_writer import DataWriter
 from phantomdata.logger import get_logger
+from phantomdata.writers.data_writer import DataWriter
 
 logger = get_logger(__name__)
 

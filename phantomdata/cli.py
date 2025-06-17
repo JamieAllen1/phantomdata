@@ -1,8 +1,6 @@
-import logging
 import typer
 
 from phantomdata.processor import processor
-
 
 app = typer.Typer()
 

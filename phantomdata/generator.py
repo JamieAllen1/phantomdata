@@ -44,7 +44,9 @@ def generate_data(
         elif col_type == "boolean":
             data = [fake.boolean() for _ in range(rows)]
 
-        logger.debug(f"Generating {col_name} with type {col_type} and domain {col_domain}")
+        logger.debug(
+            f"Generating {col_name} with type {col_type} and domain {col_domain}"  # noqa: E501
+        )
 
         df = df.assign(z=data)  # Assign the generated data to the DataFrame
         df.rename(columns={"z": col_name}, inplace=True)  # Rename the column
