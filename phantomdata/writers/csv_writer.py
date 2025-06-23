@@ -23,6 +23,6 @@ class CSVWriter(DataWriter):
         :param df: The DataFrame to write.
         :param file_path: The path to the output CSV file.
         """
-        file_path = self.base_path + table_name + ".json"
+        file_path = self.base_path + table_name + ".csv"
         df.to_csv(file_path, index=False)
         logger.info(f"Data written to {file_path} successfully.")
