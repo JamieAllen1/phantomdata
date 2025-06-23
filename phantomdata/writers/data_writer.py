@@ -7,5 +7,5 @@ class DataWriter(ABC):
     """
 
     @abstractmethod
-    def write(self, data, path):
+    def write(self, data, table_name):
         pass

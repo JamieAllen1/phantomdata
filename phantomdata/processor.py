@@ -10,24 +10,33 @@ def processor(
     schema: str,
     rows: int = 1000,
     outputpath: str = "examples",
-    fileformat: str = "csv",
+    outputformat: str = "csv",
     nulls: float = 0.0,
 ):
     """Generate synthetic data from a schema."""
     reader = SchemaReaderFactory.get_reader("yaml")
-    writer = DataWriterFactory.get_writer(fileformat)
+    if outputformat == "postgres":
+        writer = DataWriterFactory.get_writer(
+            outputformat,
+            conn_string="postgresql://postgres:test@localhost:5432/postgres",
+            schema="public",
+        )
+    else:
+        writer = DataWriterFactory.get_writer(
+            outputformat, base_path=outputpath + "/"
+        )  # noqa: E501
 
     tables = reader.read(schema)
     logger.debug(f"Schema read: {tables}")
 
     for table in tables:
         logger.debug(f"Processing table: {table}")
-        tablename = table.get("name", "default_table")
+        table_name = table.get("name", "default_table")
         row_count = table.get("count", None)
         columns = table.get("columns", [])
         if row_count is None:
             row_count = rows
 
         df = generate_data(columns, row_count, nulls)
-        writer.write(df, outputpath + "/" + tablename + "." + fileformat)  # noqa: E501
-        # writer.write(df, tablename + "." + fileformat)
+
+        writer.write(df, table_name)
