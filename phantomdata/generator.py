@@ -32,6 +32,16 @@ def generate_data(
             data = [fake.email() for i in range(rows)]
         elif col_domain == "age":
             data = [fake.random_int(min=18, max=80) for i in range(rows)]
+        elif col_domain == "date":
+            data = [
+                fake.date_this_year(before_today=True, after_today=True)
+                for i in range(rows)
+            ]
+        elif col_domain == "datetime":
+            data = [
+                fake.date_time_this_year(before_now=True, after_now=True)
+                for i in range(rows)
+            ]
         elif col_type == "integer":
             data = [fake.random_int() for _ in range(rows)]
         elif col_type == "decimal":
