@@ -19,6 +19,7 @@ class DataWriterFactory:
                 return PostgresWriter(
                     conn_string=kwargs["conn_string"],
                     schema=kwargs.get("schema", "public"),
+                    replace=kwargs.get("replace", "replace"),
                 )
             case _:
                 raise ValueError(f"Unsupported format: {format}")

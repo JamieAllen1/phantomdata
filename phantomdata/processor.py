@@ -11,6 +11,9 @@ def processor(
     rows: int = 1000,
     outputpath: str = "examples",
     outputformat: str = "csv",
+    db_connection: str = "",
+    db_schema: str = "",
+    db_replace: str = "",
     nulls: float = 0.0,
 ):
     """Generate synthetic data from a schema."""
@@ -18,8 +21,9 @@ def processor(
     if outputformat == "postgres":
         writer = DataWriterFactory.get_writer(
             outputformat,
-            conn_string="postgresql://postgres:test@localhost:5432/postgres",
-            schema="public",
+            conn_string=db_connection,
+            schema=db_schema,
+            replace=db_replace,
         )
     else:
         writer = DataWriterFactory.get_writer(

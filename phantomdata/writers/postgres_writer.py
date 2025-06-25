@@ -8,7 +8,7 @@ logger = get_logger(__name__)
 
 
 class PostgresWriter(DataWriter):
-    def __init__(self, conn_string: str, schema: str = "public"):
+    def __init__(self, conn_string: str, schema: str, replace: str):
         """
         Initialize the PostgresWriter with a SQLAlchemy engine and schema.
 
@@ -17,21 +17,22 @@ class PostgresWriter(DataWriter):
         """
         self.engine = create_engine(conn_string)
         self.schema = schema
+        self.replace = replace
 
     def write(self, df: pd.DataFrame, table_name: str) -> None:
         """
-        Write a DataFrame to a JSON file.
+        Write a DataFrame to a Postgres table.
 
         :param df: The DataFrame to write.
-        :param file_path: The path to the output JSON file.
+        :param table_name: The table name to write too.
         """
 
         df.to_sql(
             table_name,
             self.engine,
-            if_exists="replace",
-            index=False,
             schema=self.schema,
+            if_exists=self.replace,
+            index=False,
         )
         logger.info(
             f"Wrote table '{table_name}' to Postgres schema '{self.schema}' successfully."  # noqa: E501
