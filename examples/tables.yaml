@@ -21,6 +21,12 @@ tables:
           precision: 2
         - name: is_active
           type: boolean
+        - name: created_at
+          domain: datetime
+        - name: updated_at
+          domain: datetime
+        - name: date_last_active
+          domain: date
         - name: stuff
           type: string
           length: 100
@@ -38,3 +44,9 @@ tables:
           domain: email
         - name: is_active
           type: boolean
+        - name: created_at
+          domain: datetime
+        - name: updated_at
+          domain: datetime
+        - name: date_last_active
+          domain: date

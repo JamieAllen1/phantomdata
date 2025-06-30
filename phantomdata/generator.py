@@ -22,25 +22,71 @@ def generate_data(
         col_length = col.get("length", None)
         col_scale = col.get("scale", 5)
         col_precision = col.get("precision", 2)
+        col_min = col.get("min", None)
+        col_max = col.get("max", None)
+        col_values = col.get("values", None)
 
         # Generate data based on type
         if col_domain == "id":
             data = [i + 1 for i in range(rows)]
+        elif col_domain == "fixed":
+            data = [col.get("value", "fixed_value") for i in range(rows)]
+        elif col_domain == "list":
+            data = [
+                fake.get_words_list(ext_word_list=col_values)
+                for i in range(rows)  # noqa: E501
+            ]  # noqa: E501
         elif col_domain == "name":
             data = [fake.name() for i in range(rows)]
         elif col_domain == "email":
             data = [fake.email() for i in range(rows)]
         elif col_domain == "age":
             data = [fake.random_int(min=18, max=80) for i in range(rows)]
+        elif col_domain == "date":
+            data = [
+                fake.date_this_year(before_today=True, after_today=True)
+                for i in range(rows)
+            ]
+        elif col_domain == "datetime":
+            data = [
+                fake.date_time_this_year(before_now=True, after_now=True)
+                for i in range(rows)
+            ]
+        elif col_domain == "time":
+            data = [fake.time() for i in range(rows)]
         elif col_type == "integer":
-            data = [fake.random_int() for _ in range(rows)]
+            data = [
+                (
+                    fake.random_int(min=col_min, max=col_max)
+                    if col_min is not None
+                    else fake.random_int()
+                )
+                for _ in range(rows)
+            ]
         elif col_type == "decimal":
             data = [
                 fake.random_number(digits=col_scale) / (10**col_precision)
                 for _ in range(rows)
             ]  # noqa: E501
         elif col_type == "string":
-            data = [fake.text(max_nb_chars=col_length) for _ in range(rows)]
+            if col_domain == "upper":
+                data = [
+                    (
+                        fake.text(max_nb_chars=5).upper()[:col_length]
+                        if col_length < 5
+                        else fake.text(max_nb_chars=col_length).upper()
+                    )
+                    for _ in range(rows)
+                ]
+            else:
+                data = [
+                    (
+                        fake.text(max_nb_chars=5)[:col_length]
+                        if col_length < 5
+                        else fake.text(max_nb_chars=col_length)
+                    )
+                    for _ in range(rows)
+                ]
         elif col_type == "boolean":
             data = [fake.boolean() for _ in range(rows)]
 
