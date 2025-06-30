@@ -10,10 +10,11 @@ logger = get_logger(__name__)
 
 class CSVWriter(DataWriter):
     def __init__(self, base_path: Optional[str] = None):
+        logger.debug(f"Initializing CSVWriter with base path: {base_path}")
         self.base_path = (
             base_path + "/"
             if base_path and not base_path.endswith("/")
-            else ""  # noqa: E501
+            else base_path  # noqa: E501
         )
 
     def write(self, df: pd.DataFrame, table_name: str) -> None:
@@ -23,6 +24,9 @@ class CSVWriter(DataWriter):
         :param df: The DataFrame to write.
         :param file_path: The path to the output CSV file.
         """
-        file_path = self.base_path + table_name + ".csv"
+        if self.base_path:
+            file_path = self.base_path + table_name + ".csv"
+        else:
+            file_path = table_name + ".csv"
         df.to_csv(file_path, index=False)
         logger.info(f"Data written to {file_path} successfully.")
