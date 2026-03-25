@@ -1,6 +1,7 @@
 from phantomdata.writers.csv_writer import CSVWriter
 from phantomdata.writers.data_writer import DataWriter
 from phantomdata.writers.json_writer import JSONWriter
+from phantomdata.writers.mssql_writer import MSSQLWriter
 from phantomdata.writers.parquet_writer import ParquetWriter
 from phantomdata.writers.postgres_writer import PostgresWriter
 
@@ -17,6 +18,12 @@ class DataWriterFactory:
                 return JSONWriter(base_path=kwargs["base_path"])
             case "postgres":
                 return PostgresWriter(
+                    conn_string=kwargs["conn_string"],
+                    schema=kwargs.get("schema", "public"),
+                    replace=kwargs.get("replace", "replace"),
+                )
+            case "mssql":
+                return MSSQLWriter(
                     conn_string=kwargs["conn_string"],
                     schema=kwargs.get("schema", "public"),
                     replace=kwargs.get("replace", "replace"),

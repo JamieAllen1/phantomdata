@@ -33,8 +33,7 @@ def generate_data(
             data = [col.get("value", "fixed_value") for i in range(rows)]
         elif col_domain == "list":
             data = [
-                fake.get_words_list(ext_word_list=col_values)
-                for i in range(rows)  # noqa: E501
+                fake.word(ext_word_list=col_values) for i in range(rows)  # noqa: E501
             ]  # noqa: E501
         elif col_domain == "name":
             data = [fake.name() for i in range(rows)]

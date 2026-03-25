@@ -1,0 +1,298 @@
+tables:
+  - table:
+      name: alliance
+      count: 100
+      columns:
+        - name: AC
+          domain: fixed
+          value: "F70"
+        - name: Rego
+          type: string
+          length: 3
+          domain: upper
+        - name: SectorDate
+          domain: date
+        - name: Flight
+          type: string
+          length: 6
+          domain: upper
+        - name: DepartTerminalCode
+          type: string
+          length: 10
+        - name: ActualPortFrom
+          type: string
+          length: 3
+          domain: upper
+        - name: ActualPortTo
+          type: string
+          length: 3
+          domain: upper
+        - name: ArriveTerminalCode
+          type: string
+          length: 10
+        - name: ScheduleDepart
+          domain: datetime
+        - name: ScheduleArrive
+          domain: datetime
+        - name: OffBlockTime
+          domain: datetime
+        - name: OnBlockTime
+          domain: datetime
+        - name: Agreement
+          type: integer
+        - name: PAX
+          type: integer
+          min: 0
+          max: 500
+  - table:
+      name: corporate
+      count: 50
+      columns:
+        - name: Carrier
+          type: string
+          length: 2
+        - name: FlightNo
+          type: string
+          length: 6
+        - name: Aircraft
+          type: string
+          length: 4
+        - name: TailNumber
+          type: string
+          length: 6
+        - name: Vector
+          type: string
+          length: 1
+        - name: HomeAirport
+          type: string
+          length: 2
+        - name: ArrivalUTC
+          domain: time
+        - name: ArrivalAdjust
+          type: integer
+        - name: ArrivalAEST
+          domain: datetime
+        - name: DestAirport
+          type: string
+          length: 3
+        - name: DepartureUTC
+          domain: time
+        - name: DepartureAdjust
+          type: integer
+        - name: DepartureAEST
+          domain: datetime
+        - name: FlightDate
+          domain: date
+        - name: PAX
+          type: integer
+          min: 0
+          max: 20
+  - table:
+      name: jetstar
+      count: 500
+      columns:
+        - name: DateLocalPort
+          domain: date
+        - name: TimeLocalPort
+          domain: time
+        - name: FlightCode
+          domain: fixed
+          value: "JQ"
+        - name: FlightNumber
+          type: integer
+          min: 100
+          max: 9999
+        - name: Movement
+          domain: list
+          values:
+            - 'L'
+            - 'D'
+        - name: AircraftType
+          type: string
+          length: 3
+        - name: AircraftRegistration
+          type: string
+          length: 6
+        - name: Origin
+          type: string
+          length: 3
+          domain: upper
+        - name: Destination
+          type: string
+          length: 3
+          domain: upper
+        - name: FlightType
+          domain: list
+          values:
+            - 'INT'
+            - 'DOM'
+        - name: SeatingCapacity
+          type: integer
+          min: 100
+          max: 500
+        - name: TotalPassengers
+          type: integer
+          min: 0
+          max: 500
+        - name: Infants
+          type: integer
+          min: 0
+          max: 50
+        - name: TransitPax
+          type: integer
+          min: 0
+          max: 25
+        - name: TransferPax
+          type: integer
+          min: 0
+          max: 25
+        - name: POSCrew
+          type: integer
+          min: 0
+          max: 10
+        - name: OnCarriagePax
+          type: integer
+          min: 0
+          max: 50
+        - name: Exemptions
+          type: integer
+          min: 0
+          max: 20
+        - name: TotalPaxChargeable
+          type: integer
+          min: 0
+          max: 500
+  - table:
+      name: qantas
+      count: 750
+      columns:
+        - name: FLIGHT_CODE
+          domain: fixed
+          value: "QF"
+        - name: DOMINTIND
+          domain: list
+          values:
+            - 'I'
+            - 'D'
+        - name: FLIGHT_NUMBER
+          type: integer
+          min: 100
+          max: 9999
+        - name: ORIGPORT
+          type: string
+          length: 3
+          domain: upper
+        - name: DESTPORT
+          type: string
+          length: 3
+          domain: upper
+        - name: AC_CODE
+          type: string
+          length: 4
+        - name: MOVEMENTTYPE
+          domain: list
+          values:
+            - 'L'
+            - 'D'
+        - name: UACTUALDATE
+          domain: date
+        - name: UACTUALTIME
+          domain: time
+        - name: AC_REGO
+          type: string
+          length: 5
+          domain: upper
+        - name: ADULT
+          type: string
+          length: 2
+          domain: fixed
+          value: "AD"
+        - name: ADULT_ARRDEP
+          type: integer
+          min: 0
+          max: 100
+        - name: ADULT_TRANSIT
+          type: integer
+          min: 0
+          max: 50
+        - name: ADULT_TRANSFER
+          type: integer
+          min: 0
+          max: 50
+        - name: CHILD
+          type: string
+          length: 2
+          domain: fixed
+          value: "CH"
+        - name: CHILD_ARRDEP
+          type: integer
+          min: 0
+          max: 50
+        - name: CHILD_TRANSIT
+          type: integer
+          min: 0
+          max: 25
+        - name: CHILD_TRANSFER
+          type: integer
+          min: 0
+          max: 25
+        - name: INFANT
+          type: string
+          length: 2
+          domain: fixed
+          value: "IN"
+        - name: INFANT_ARRDEP
+          type: integer
+          min: 0
+          max: 20
+        - name: INFANT_TRANSIT
+          type: integer
+          min: 0
+          max: 10
+        - name: INFANT_TRANSFER
+          type: integer
+          min: 0
+          max: 10
+        - name: CREW
+          type: string
+          length: 2
+          domain: fixed
+          value: "CR"
+        - name: CREW_ARRDEP
+          type: integer
+          min: 0
+          max: 20
+        - name: CREW_TRANSIT
+          type: integer
+          min: 0
+          max: 10
+        - name: CREW_TRANSFER
+          type: integer
+          min: 0
+          max: 10
+        - name: FLTTYPE
+          type: string
+          length: 1
+        - name: GLMGNTCD
+          type: integer
+          min: 1
+          max: 10
+        - name: TERM
+          type: string
+          length: 10
+        - name: GATE
+          type: string
+          length: 10
+        - name: SECC
+          type: string
+          length: 2
+          domain: fixed
+          value: "TN"
+        - name: MTOW
+          type: decimal
+          scale: 10
+          precision: 2
+        - name: CAP
+          type: integer
+          min: 50
+          max: 500

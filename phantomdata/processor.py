@@ -25,6 +25,13 @@ def processor(
             schema=db_schema,
             replace=db_replace,
         )
+    elif outputformat == "mssql":
+        writer = DataWriterFactory.get_writer(
+            outputformat,
+            conn_string=db_connection,
+            schema=db_schema,
+            replace=db_replace,
+        )
     else:
         writer = DataWriterFactory.get_writer(
             outputformat, base_path=outputpath + "/"
